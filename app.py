@@ -120,5 +120,14 @@ def on_disconnect(reason=None):
 
 
 if __name__ == "__main__":
-    socketio.run(app, host="0.0.0.0", port=5000, debug=True)
-
+    host = os.environ.get("HOST", "127.0.0.1")
+    port = int(os.environ.get("PORT", "5000"))
+    print(f"Open this URL in your browser: http://127.0.0.1:{port}")
+    socketio.run(
+    app,
+    host=host,
+    port=port,
+    debug=False,
+    use_reloader=False,
+    allow_unsafe_werkzeug=True
+    )
